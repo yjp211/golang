@@ -15,7 +15,7 @@ func TestConfig(t *testing.T) {
 	if val == "" {
 		t.Errorf("no key for <%s>\n", key)
 	}
-	ints, _ := Config.GetStrings2("WC", []string{})
+	ints, _ := Config.GetStrings("WC", []string{})
 	if len(ints) == 0 {
 		t.Errorf("no key for <%s>\n", "WC")
 	}

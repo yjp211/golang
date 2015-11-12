@@ -3,7 +3,6 @@ package misc
 import (
 	"encoding/json"
 	"io/ioutil"
-	"strings"
 )
 
 type Config struct {
@@ -88,34 +87,6 @@ func (p *Config) GetBool(key string, defalut ...bool) bool {
 }
 
 func (p *Config) GetStrings(key string, defalut ...[]string) ([]string, int) {
-	val, ok := p.Dict[key].(string)
-	if !ok {
-		if len(defalut) > 0 {
-			return defalut[0], len(defalut[0])
-		} else {
-			return nil, 0
-		}
-	}
-	val = strings.Trim(val, " ")
-	if len(val) == 0 {
-		return nil, 0
-	}
-
-	strArr := strings.Split(val, ",")
-	length := len(strArr)
-	arr := make([]string, length)
-	i := 0
-	for _, v := range strArr {
-		nv := strings.Trim(v, " ")
-		if len(nv) > 0 {
-			arr[i] = nv
-			i++
-		}
-	}
-	return arr, i
-}
-
-func (p *Config) GetStrings2(key string, defalut ...[]string) ([]string, int) {
 	val, ok := p.Dict[key].([]interface{})
 	if !ok {
 		if len(defalut) > 0 {
